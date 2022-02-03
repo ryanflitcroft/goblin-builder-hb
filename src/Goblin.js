@@ -2,6 +2,8 @@ import React from 'react';
 
 export default function Goblin({ goblin,
   handleDeleteGoblin }) {
+
+  console.log('||goblin: ', goblin);
   return (
     // be sure you take a look at this component i'm handing you and figure out what props it will need to work correctly.
     <div 

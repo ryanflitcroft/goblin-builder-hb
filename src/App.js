@@ -16,15 +16,14 @@ function App() {
   const [allGoblins, setAllGoblins] = useState([]);
   const [filteredGoblins, setFilteredGoblins] = useState([]);
   const [goblinFormName, setGoblinFormName] = useState('');
-  const [goblinFormHP, setGoblinFormHP] = useState(0);
+  const [goblinFormHP, setGoblinFormHP] = useState('');
   const [goblinFormColor, setGoblinFormColor] = useState('');
   
   function submitGoblin(e) {
     e.preventDefault();
-    
     // on submit, make a new goblin object with a random id, a name that comes from the form state, an hp that comes from the form state, and a color that comes from the form state
     const newGoblin = {
-      id: (Math.floor(Math.random() * 100)),
+      id: Math.random(),
       name: goblinFormName,
       hp: goblinFormHP,
       color: goblinFormColor
@@ -34,7 +33,7 @@ function App() {
     
     // clear out the goblin form state items by setting them to empty strings. This will cause the form to reset in the UI.
     setGoblinFormName('');
-    setGoblinFormHP(0);
+    setGoblinFormHP('');
     setGoblinFormColor('');
   }
 
@@ -57,7 +56,9 @@ function App() {
   return (
     <div className="App">
       <div className='current-goblin quarter'>
-        <Goblin goblin={{
+        <Goblin goblin={{ name: goblinFormName,
+          hp: goblinFormHP,
+          color: goblinFormColor
           /* 
             use the goblin form state to make a goblin object and to display it. 
             This will let the user see the current form state 
