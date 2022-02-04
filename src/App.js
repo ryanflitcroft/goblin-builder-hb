@@ -29,22 +29,21 @@ function App() {
   }
 
   useEffect(() => {
+    function handleFilterGoblins(search) {
+      if (!search) {
+        setFilteredGoblins([...allGoblins]);
+      } else {
+        const filteredGoblins = allGoblins.filter(goblin => goblin.name.includes(search));
+        setFilteredGoblins([...filteredGoblins]);
+      }
+    }
     handleFilterGoblins(search);
-  }, [search, allGoblins, handleFilterGoblins]);
+  }, [search, allGoblins]);
 
   function handleDeleteGoblin(id) {
     const i = allGoblins.findIndex(goblin => goblin.id === id);
     allGoblins.splice(i, 1);
     setAllGoblins([...allGoblins]);
-  }
-
-  function handleFilterGoblins(search) {
-    if (!search) {
-      setFilteredGoblins([...allGoblins]);
-    } else {
-      const filteredGoblins = allGoblins.filter(goblin => goblin.name.includes(search));
-      setFilteredGoblins([...filteredGoblins]);
-    }
   }
 
   return (
