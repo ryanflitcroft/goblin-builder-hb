@@ -21,6 +21,7 @@ function App() {
       hp: goblinFormHP,
       color: goblinFormColor
     };
+
     setAllGoblins([...allGoblins, newGoblin]);
     setGoblinFormName('');
     setGoblinFormHP('');
@@ -29,7 +30,7 @@ function App() {
 
   useEffect(() => {
     handleFilterGoblins(search);
-  }, [search, allGoblins]);
+  }, [search, allGoblins, handleFilterGoblins]);
 
   function handleDeleteGoblin(id) {
     const i = allGoblins.findIndex(goblin => goblin.id === id);
