@@ -21,6 +21,7 @@ function App() {
       hp: goblinFormHP,
       color: goblinFormColor
     };
+
     setAllGoblins([...allGoblins, newGoblin]);
     setGoblinFormName('');
     setGoblinFormHP('');
@@ -28,6 +29,14 @@ function App() {
   }
 
   useEffect(() => {
+    function handleFilterGoblins(search) {
+      if (!search) {
+        setFilteredGoblins([...allGoblins]);
+      } else {
+        const filteredGoblins = allGoblins.filter(goblin => goblin.name.includes(search));
+        setFilteredGoblins([...filteredGoblins]);
+      }
+    }
     handleFilterGoblins(search);
   }, [search, allGoblins]);
 
@@ -35,15 +44,6 @@ function App() {
     const i = allGoblins.findIndex(goblin => goblin.id === id);
     allGoblins.splice(i, 1);
     setAllGoblins([...allGoblins]);
-  }
-
-  function handleFilterGoblins(search) {
-    if (!search) {
-      setFilteredGoblins([...allGoblins]);
-    } else {
-      const filteredGoblins = allGoblins.filter(goblin => goblin.name.includes(search));
-      setFilteredGoblins([...filteredGoblins]);
-    }
   }
 
   return (
